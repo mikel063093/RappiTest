@@ -1,0 +1,71 @@
+apply plugin: 'com.android.application'
+
+
+
+android {
+  compileSdkVersion rootProject.ext.compileSdkVersion
+  buildToolsVersion '28.0.2'
+  defaultConfig {
+    applicationId "com.mike.rappi"
+    minSdkVersion rootProject.ext.minSdkVersion
+    targetSdkVersion rootProject.ext.targetSdkVersion
+    versionCode rootProject.ext.versionCode
+    versionName rootProject.ext.versionName
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+  }
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+  buildTypes.each {
+    it.buildConfigField 'String', 'API_KEY', "\"7f9462d9d09339434d25c79c98770cff\""
+  }
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+}
+
+dependencies {
+  implementation fileTree(dir: 'libs', include: ['*.jar'])
+  androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0-alpha4', {
+    exclude group: 'com.android.support', module: 'support-annotations'
+  })
+
+  // Dagger
+  implementation rootProject.ext.dagger
+  annotationProcessor rootProject.ext.daggerCompiler
+
+  // Support lib
+  implementation 'androidx.appcompat:appcompat:1.0.0-rc02'
+  implementation 'com.google.android.material:material:1.0.0-rc02'
+  implementation 'androidx.recyclerview:recyclerview:1.0.0-rc02'
+  implementation 'androidx.cardview:cardview:1.0.0-rc02'
+
+  // RxJava
+  implementation rootProject.ext.rxjava
+  implementation rootProject.ext.retrofitRxAdapter
+
+  // RxAndroid
+  implementation rootProject.ext.rxAndroid
+
+  // Retrofit
+  implementation rootProject.ext.retrofit
+  implementation rootProject.ext.gsonConverter
+  implementation rootProject.ext.retrofitLogging
+
+  // ButterKnife
+  implementation rootProject.ext.butterKnife
+  annotationProcessor rootProject.ext.butterKnifeCompiler
+
+  // EventBus
+  implementation rootProject.ext.eventBus
+
+  // UI
+  implementation rootProject.ext.glide
+  implementation rootProject.ext.timber
+  implementation 'androidx.legacy:legacy-support-v4:1.0.0-rc02'
+  testImplementation 'junit:junit:4.12'
+}
