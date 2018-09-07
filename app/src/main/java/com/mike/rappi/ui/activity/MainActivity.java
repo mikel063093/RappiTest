@@ -14,6 +14,7 @@ import butterknife.ButterKnife;
 import com.mike.rappi.ui.adapter.ViewPagerAdapter;
 import com.mike.rappi.ui.fragment.PopularFragment;
 import com.mike.rappi.ui.fragment.TopRatedFragment;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setHomeButtonEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setHomeButtonEnabled(true);
 
         setupViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);

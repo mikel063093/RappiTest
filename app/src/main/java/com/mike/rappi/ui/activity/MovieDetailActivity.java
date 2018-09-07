@@ -1,23 +1,21 @@
 package com.mike.rappi.ui.activity;
 
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import com.bumptech.glide.Glide;
-import com.mike.rappi.R;
 import com.mike.rappi.MoviesApp;
+import com.mike.rappi.R;
 import com.mike.rappi.di.detail.DaggerDetailComponent;
-import com.mike.rappi.di.detail.DetailModule;
 import com.mike.rappi.event.PopularDetailEvent;
 import com.mike.rappi.event.TopRatedDetailEvent;
 import com.mike.rappi.util.Constants;
 import com.mike.rappi.util.RxBus;
 import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import rx.subscriptions.CompositeSubscription;
 import timber.log.Timber;
 
@@ -104,8 +102,6 @@ public class MovieDetailActivity extends AppCompatActivity {
   private void initInjector() {
     DaggerDetailComponent.builder()
         .appComponent(MoviesApp.get(this).getAppComponent())
-
-        .detailModule(new DetailModule())
         .build().inject(this);
   }
 }

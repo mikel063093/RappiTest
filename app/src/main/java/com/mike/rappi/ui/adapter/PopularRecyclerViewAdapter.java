@@ -73,7 +73,7 @@ public class PopularRecyclerViewAdapter extends RecyclerView.Adapter<PopularRecy
         return resultsList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.moviePoster)
         ImageView poster;
@@ -82,7 +82,7 @@ public class PopularRecyclerViewAdapter extends RecyclerView.Adapter<PopularRecy
         @BindView(R.id.movieYear)
         TextView year;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
         }

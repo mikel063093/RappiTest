@@ -60,12 +60,12 @@ dependencies {
   implementation rootProject.ext.butterKnife
   annotationProcessor rootProject.ext.butterKnifeCompiler
 
-  // EventBus
-  implementation rootProject.ext.eventBus
 
   // UI
   implementation rootProject.ext.glide
   implementation rootProject.ext.timber
+
+  
   implementation 'androidx.legacy:legacy-support-v4:1.0.0-rc02'
   testImplementation 'junit:junit:4.12'
 }

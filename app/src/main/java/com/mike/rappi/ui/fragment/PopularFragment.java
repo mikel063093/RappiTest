@@ -21,6 +21,7 @@ import com.mike.rappi.ui.adapter.PopularRecyclerViewAdapter;
 import com.mike.rappi.util.RxBus;
 import java.util.List;
 
+import java.util.Objects;
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -37,7 +38,7 @@ public class PopularFragment extends Fragment implements IPopularView {
   @Inject PopularPresenter presenter;
   @Inject RxBus bus;
 
-  PopularRecyclerViewAdapter adapter;
+  private PopularRecyclerViewAdapter adapter;
 
   public PopularFragment() {
     // Required empty public constructor
@@ -78,7 +79,7 @@ public class PopularFragment extends Fragment implements IPopularView {
 
   private void initInjector() {
     DaggerPopularComponent.builder()
-        .appComponent(MoviesApp.get(this.getContext()).getAppComponent())
+        .appComponent(MoviesApp.get(Objects.requireNonNull(this.getContext())).getAppComponent())
         .popularModule(new PopularModule(this))
         .build().inject(this);
   }
