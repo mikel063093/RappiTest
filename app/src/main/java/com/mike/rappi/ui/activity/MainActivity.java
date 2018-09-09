@@ -14,6 +14,7 @@ import butterknife.ButterKnife;
 import com.mike.rappi.ui.adapter.ViewPagerAdapter;
 import com.mike.rappi.ui.fragment.PopularFragment;
 import com.mike.rappi.ui.fragment.TopRatedFragment;
+import com.mike.rappi.ui.fragment.UpcomingFragment;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new PopularFragment(), "Popular");
         adapter.addFragment(new TopRatedFragment(), "Top Rated");
+        adapter.addFragment(new UpcomingFragment(), "Upcoming");
         viewPager.setAdapter(adapter);
     }
 }
