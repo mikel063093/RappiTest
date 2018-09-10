@@ -2,16 +2,16 @@ package com.mike.rappi.ui.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import com.bumptech.glide.Glide;
 import com.mike.rappi.R;
-
 import com.mike.rappi.event.TopRatedDetailEvent;
 import com.mike.rappi.event.UpcomingDetailEvent;
 import com.mike.rappi.model.entity.toprated.TopRatedResults;
@@ -20,25 +20,21 @@ import com.mike.rappi.ui.activity.MovieDetailActivity;
 import com.mike.rappi.util.Constants;
 import com.mike.rappi.util.RxBus;
 import java.util.List;
-
 import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by mike
  */
 
-public class TopRatedRecyclerViewAdapter
-    extends RecyclerView.Adapter<TopRatedRecyclerViewAdapter.ViewHolder> {
+public class UpcomingRecyclerViewAdapter
+    extends RecyclerView.Adapter<UpcomingRecyclerViewAdapter.ViewHolder> {
 
-  private List<TopRatedResults> topRatedResultsList;
+  private List<UpcomingResults> topRatedResultsList;
   private Context context;
   private RxBus bus;
 
   @Inject
-  public TopRatedRecyclerViewAdapter(List<TopRatedResults> topRatedResultsList, Context context,
+  public UpcomingRecyclerViewAdapter(List<UpcomingResults> topRatedResultsList, Context context,
       RxBus bus) {
     this.topRatedResultsList = topRatedResultsList;
     this.context = context;
@@ -55,7 +51,7 @@ public class TopRatedRecyclerViewAdapter
 
   @Override
   public void onBindViewHolder(ViewHolder holder, int position) {
-    TopRatedResults results = topRatedResultsList.get(position);
+    UpcomingResults results = topRatedResultsList.get(position);
 
     holder.title.setText(results.getTitle());
     holder.year.setText(results.getRelease_date());
@@ -66,7 +62,7 @@ public class TopRatedRecyclerViewAdapter
         .into(holder.poster);
 
     holder.poster.setOnClickListener(v -> {
-      bus.postSticky(new TopRatedDetailEvent(results));
+      bus.postSticky(new UpcomingDetailEvent(results));
       context.startActivity(new Intent(context, MovieDetailActivity.class));
     });
   }

@@ -13,8 +13,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.bumptech.glide.Glide;
 import com.mike.rappi.R;
-import com.mike.rappi.event.PopularDetailEvent;
-import com.mike.rappi.model.entity.popular.PopularResults;
+import com.mike.rappi.event.SearchDetailEvent;
+import com.mike.rappi.model.entity.search.Movie;
 import com.mike.rappi.model.entity.search.MoviesResponse;
 import com.mike.rappi.ui.activity.MovieDetailActivity;
 import com.mike.rappi.util.Constants;
@@ -41,18 +41,18 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
   }
 
   @Override public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-    PopularResults results = moviesResponse.getResults().get(position);
+    Movie results = moviesResponse.getResults().get(position);
 
     holder.title.setText(results.getTitle());
-    holder.year.setText(results.getRelease_date());
+    holder.year.setText(results.getReleaseDate());
 
     Glide.with(context)
-        .load(Constants.IMAGE_BASE_URL + Constants.IMAGE_W185 + results.getPoster_path())
+        .load(Constants.IMAGE_BASE_URL + Constants.IMAGE_W185 + results.getBackdropPath())
         .placeholder(R.drawable.movieicon)
         .into(holder.poster);
 
     holder.poster.setOnClickListener(v -> {
-      bus.postSticky(new PopularDetailEvent(results));
+      bus.postSticky(new SearchDetailEvent(results));
       context.startActivity(new Intent(context, MovieDetailActivity.class));
     });
   }

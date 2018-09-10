@@ -12,7 +12,9 @@ import com.mike.rappi.MoviesApp;
 import com.mike.rappi.R;
 import com.mike.rappi.di.detail.DaggerDetailComponent;
 import com.mike.rappi.event.PopularDetailEvent;
+import com.mike.rappi.event.SearchDetailEvent;
 import com.mike.rappi.event.TopRatedDetailEvent;
+import com.mike.rappi.event.UpcomingDetailEvent;
 import com.mike.rappi.util.Constants;
 import com.mike.rappi.util.RxBus;
 import javax.inject.Inject;
@@ -85,6 +87,40 @@ public class MovieDetailActivity extends AppCompatActivity {
                     .load(Constants.IMAGE_BASE_URL
                         + Constants.IMAGE_W780
                         + ((TopRatedDetailEvent) event).getResults().getBackdrop_path())
+                    .into(coverImage);
+              } else if (event instanceof UpcomingDetailEvent) {
+                detailTitle.setText(((UpcomingDetailEvent) event).getResults().getTitle());
+                releaseDate.setText(((UpcomingDetailEvent) event).getResults().getRelease_date());
+                detailOverview.setText(((UpcomingDetailEvent) event).getResults().getOverview());
+
+                Glide.with(this)
+                    .load(Constants.IMAGE_BASE_URL
+                        + Constants.IMAGE_W342
+                        + ((UpcomingDetailEvent) event).getResults().getPoster_path())
+                    .placeholder(R.drawable.movieicon)
+                    .into(detailBackdrop);
+
+                Glide.with(this)
+                    .load(Constants.IMAGE_BASE_URL
+                        + Constants.IMAGE_W780
+                        + ((UpcomingDetailEvent) event).getResults().getBackdrop_path())
+                    .into(coverImage);
+              } else if (event instanceof SearchDetailEvent) {
+                detailTitle.setText(((SearchDetailEvent) event).getResults().getTitle());
+                releaseDate.setText(((SearchDetailEvent) event).getResults().getReleaseDate());
+                detailOverview.setText(((SearchDetailEvent) event).getResults().getOverview());
+
+                Glide.with(this)
+                    .load(Constants.IMAGE_BASE_URL
+                        + Constants.IMAGE_W342
+                        + ((SearchDetailEvent) event).getResults().getPosterPath())
+                    .placeholder(R.drawable.movieicon)
+                    .into(detailBackdrop);
+
+                Glide.with(this)
+                    .load(Constants.IMAGE_BASE_URL
+                        + Constants.IMAGE_W780
+                        + ((SearchDetailEvent) event).getResults().getBackdropPath())
                     .into(coverImage);
               }
             },

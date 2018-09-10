@@ -15,10 +15,10 @@ import com.mike.rappi.MoviesApp;
 import com.mike.rappi.R;
 import com.mike.rappi.di.upcoming.DaggerUpcomingComponet;
 import com.mike.rappi.di.upcoming.UpcomingModule;
-import com.mike.rappi.model.entity.toprated.TopRatedResults;
+import com.mike.rappi.model.entity.upcoming.UpcomingResults;
 import com.mike.rappi.mvp.presenter.upcoming.UpcomingPresenter;
 import com.mike.rappi.mvp.view.upcoming.IUpcomingView;
-import com.mike.rappi.ui.adapter.TopRatedRecyclerViewAdapter;
+import com.mike.rappi.ui.adapter.UpcomingRecyclerViewAdapter;
 import com.mike.rappi.util.RxBus;
 import java.util.List;
 import java.util.Objects;
@@ -35,7 +35,7 @@ public class UpcomingFragment extends Fragment implements IUpcomingView {
   @Inject UpcomingPresenter presenter;
   @Inject RxBus bus;
 
-  private TopRatedRecyclerViewAdapter adapter;
+  private UpcomingRecyclerViewAdapter adapter;
 
   public UpcomingFragment() {
     // Required empty public constructor
@@ -66,8 +66,8 @@ public class UpcomingFragment extends Fragment implements IUpcomingView {
     recyclerView.setVisibility(View.VISIBLE);
   }
 
-  @Override public void showUpComingMovies(List<TopRatedResults> topRatedResultsList) {
-    adapter = new TopRatedRecyclerViewAdapter(topRatedResultsList, getContext(), bus);
+  @Override public void showUpComingMovies(List<UpcomingResults> topRatedResultsList) {
+    adapter = new UpcomingRecyclerViewAdapter(topRatedResultsList, getContext(), bus);
     adapter.notifyDataSetChanged();
     recyclerView.setAdapter(adapter);
     recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));

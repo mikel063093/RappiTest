@@ -1,8 +1,6 @@
 package com.mike.rappi.mvp.view.upcoming;
 
-
-
-import com.mike.rappi.model.entity.toprated.TopRatedResults;
+import com.mike.rappi.model.entity.upcoming.UpcomingResults;
 import java.util.List;
 
 /**
@@ -14,5 +12,5 @@ public interface IUpcomingView {
 
     void hideProgress();
 
-    void showUpComingMovies(List<TopRatedResults> topRatedResultsList);
+    void showUpComingMovies(List<UpcomingResults> topRatedResultsList);
 }

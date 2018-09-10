@@ -1,13 +1,13 @@
 package com.mike.rappi.mvp.presenter.popular;
 
 import com.mike.rappi.model.api.ApiSource;
+import com.mike.rappi.model.entity.popular.PopularResults;
 import com.mike.rappi.mvp.view.popular.IPopularView;
 import com.mike.rappi.util.Constants;
 import io.realm.Realm;
+import io.realm.RealmResults;
 import java.util.Locale;
-
 import javax.inject.Inject;
-
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import timber.log.Timber;
@@ -26,7 +26,7 @@ public class PopularPresenter implements IPopularPresenter {
   public PopularPresenter(IPopularView view, ApiSource apiSource) {
     this.view = view;
     this.apiSource = apiSource;
-    realm = Realm.getDefaultInstance();
+    this.realm = Realm.getDefaultInstance();
   }
 
   @Override
@@ -37,12 +37,16 @@ public class PopularPresenter implements IPopularPresenter {
         .subscribeOn(Schedulers.newThread())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(popularResponse -> {
-              view.hideProgress();
-              view.showPopularMovies(popularResponse.getPopularResultsList());
-              realm.executeTransactionAsync(
-                  realm1 -> realm1.insertOrUpdate(popularResponse.getPopularResultsList()),
-                  () -> Timber.e("onSucces"), Timber::e);
-            },
-            e -> Timber.e(e.getMessage()));
+          view.hideProgress();
+          view.showPopularMovies(popularResponse.getPopularResultsList());
+          realm.executeTransactionAsync(
+              realm1 -> realm1.insertOrUpdate(popularResponse.getPopularResultsList()),
+              () -> Timber.e("onSucces"), Timber::e);
+        }, throwable -> {
+          RealmResults<PopularResults> result = realm.where(PopularResults.class).findAll();
+          view.hideProgress();
+          view.showPopularMovies(result);
+          Timber.e(throwable);
+        }, () -> view.hideProgress());
   }
 }

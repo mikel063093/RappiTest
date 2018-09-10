@@ -1,11 +1,11 @@
 package com.mike.rappi.mvp.presenter.upcoming;
 
 import com.mike.rappi.model.api.ApiSource;
-import com.mike.rappi.mvp.presenter.toprated.ITopRatedPresenter;
-import com.mike.rappi.mvp.view.toprated.ITopRatedView;
+import com.mike.rappi.model.entity.upcoming.UpcomingResults;
 import com.mike.rappi.mvp.view.upcoming.IUpcomingView;
 import com.mike.rappi.util.Constants;
 import io.realm.Realm;
+import io.realm.RealmResults;
 import java.util.Locale;
 import javax.inject.Inject;
 import rx.android.schedulers.AndroidSchedulers;
@@ -43,6 +43,11 @@ public class UpcomingPresenter implements IUpcomingPresenter {
                   realm1 -> realm1.insertOrUpdate(topRatedResponse.getTopRatedResultsList()),
                   () -> Timber.e("onSucces"), Timber::e);
             },
-            e -> Timber.e(e.getMessage()));
+            e -> {
+              RealmResults<UpcomingResults> result = realm.where(UpcomingResults.class).findAll();
+              view.hideProgress();
+              view.showUpComingMovies(result);
+              Timber.e(e);
+            }, () -> view.hideProgress());
   }
 }

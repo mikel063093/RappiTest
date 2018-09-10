@@ -36,8 +36,8 @@ public class NetworkModule {
     List<Protocol> protocols = new ArrayList<>();
     protocols.add(Protocol.HTTP_1_1);
     OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
-    okHttpClient.connectTimeout(1, TimeUnit.MINUTES);
-    okHttpClient.readTimeout(1, TimeUnit.MINUTES);
+    okHttpClient.connectTimeout(8, TimeUnit.SECONDS);
+    okHttpClient.readTimeout(8, TimeUnit.SECONDS);
     okHttpClient.protocols(protocols);
     okHttpClient.addInterceptor(httpLoggingInterceptor);
     return okHttpClient.build();

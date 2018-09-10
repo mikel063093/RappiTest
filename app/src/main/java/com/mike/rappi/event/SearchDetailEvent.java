@@ -1,23 +1,23 @@
 package com.mike.rappi.event;
 
-import com.mike.rappi.model.entity.popular.PopularResults;
+import com.mike.rappi.model.entity.search.Movie;
 
 /**
  * Created by mike
  */
 
 public class SearchDetailEvent {
-  private PopularResults results;
+  private Movie results;
 
-  public SearchDetailEvent(PopularResults results) {
+  public SearchDetailEvent(Movie results) {
     this.results = results;
   }
 
-  public PopularResults getResults() {
+  public Movie getResults() {
     return results;
   }
 
-  public void setResults(PopularResults results) {
+  public void setResults(Movie results) {
     this.results = results;
   }
 }

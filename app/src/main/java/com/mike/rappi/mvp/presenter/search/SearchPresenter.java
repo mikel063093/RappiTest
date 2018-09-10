@@ -1,11 +1,16 @@
 package com.mike.rappi.mvp.presenter.search;
 
 import com.mike.rappi.model.api.ApiSource;
+import com.mike.rappi.model.entity.popular.PopularResults;
+import com.mike.rappi.model.entity.search.Movie;
+import com.mike.rappi.model.entity.search.MoviesResponse;
 import com.mike.rappi.mvp.presenter.upcoming.IUpcomingPresenter;
 import com.mike.rappi.mvp.view.search.ISearchView;
 import com.mike.rappi.mvp.view.upcoming.IUpcomingView;
 import com.mike.rappi.util.Constants;
 import io.realm.Realm;
+import io.realm.RealmResults;
+import java.util.List;
 import java.util.Locale;
 import javax.inject.Inject;
 import rx.android.schedulers.AndroidSchedulers;
@@ -28,7 +33,7 @@ public class SearchPresenter implements ISearchPresenter {
   public SearchPresenter(ISearchView view, ApiSource apiSource) {
     this.view = view;
     this.apiSource = apiSource;
-    realm = Realm.getDefaultInstance();
+    this.realm = Realm.getDefaultInstance();
   }
 
   @Override public void searchMovie(String query) {
@@ -42,6 +47,12 @@ public class SearchPresenter implements ISearchPresenter {
                   realm1 -> realm1.insertOrUpdate(topRatedResponse.getResults()),
                   () -> Timber.e("onSucces"), Timber::e);
             },
-            e -> Timber.e(e.getMessage()));
+            e -> {
+              List<Movie> result = realm.copyFromRealm(realm.where(Movie.class).findAll());
+              MoviesResponse moviesResponse = new MoviesResponse();
+              moviesResponse.setResults(result);
+              view.showSearchResponse(moviesResponse);
+              Timber.e(e);
+            });
   }
 }

@@ -1,16 +1,16 @@
 package com.mike.rappi.ui.adapter;
 
 import android.widget.Filter;
-import com.mike.rappi.model.entity.popular.PopularResults;
+import com.mike.rappi.model.entity.search.Movie;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MoviesFilter extends Filter {
   private AutoCompleteAdapter adapter;
-  private List<PopularResults> originalList;
-  private List<PopularResults> filteredList;
+  private List<Movie> originalList;
+  private List<Movie> filteredList;
 
-  public MoviesFilter(AutoCompleteAdapter adapter, List<PopularResults> originalList) {
+  public MoviesFilter(AutoCompleteAdapter adapter, List<Movie> originalList) {
     super();
     this.adapter = adapter;
     this.originalList = originalList;
@@ -28,7 +28,7 @@ public class MoviesFilter extends Filter {
       final String filterPattern = constraint.toString().toLowerCase().trim();
 
       // Your filtering logic goes in here
-      for (final PopularResults item : originalList) {
+      for (final Movie item : originalList) {
         if (item.getTitle().toLowerCase().contains(filterPattern)) {
           filteredList.add(item);
         }
@@ -42,7 +42,9 @@ public class MoviesFilter extends Filter {
   @Override
   protected void publishResults(CharSequence constraint, FilterResults results) {
     adapter.filteredList.clear();
-    adapter.filteredList.addAll((List) results.values);
+    if (results != null && results.values != null) {
+      adapter.filteredList.addAll((List) results.values);
+    }
     adapter.notifyDataSetChanged();
   }
 }

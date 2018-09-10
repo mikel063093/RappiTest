@@ -1,14 +1,13 @@
 package com.mike.rappi.mvp.presenter.toprated;
 
 import com.mike.rappi.model.api.ApiSource;
+import com.mike.rappi.model.entity.toprated.TopRatedResults;
 import com.mike.rappi.mvp.view.toprated.ITopRatedView;
 import com.mike.rappi.util.Constants;
 import io.realm.Realm;
-import io.realm.RealmObject;
+import io.realm.RealmResults;
 import java.util.Locale;
-
 import javax.inject.Inject;
-
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import timber.log.Timber;
@@ -27,7 +26,7 @@ public class TopRatedPresenter implements ITopRatedPresenter {
   public TopRatedPresenter(ITopRatedView view, ApiSource apiSource) {
     this.view = view;
     this.apiSource = apiSource;
-    realm = Realm.getDefaultInstance();
+    this.realm = Realm.getDefaultInstance();
   }
 
   @Override
@@ -44,6 +43,11 @@ public class TopRatedPresenter implements ITopRatedPresenter {
                   realm1 -> realm1.insertOrUpdate(topRatedResponse.getTopRatedResultsList()),
                   () -> Timber.e("onSucces"), Timber::e);
             },
-            e -> Timber.e(e.getMessage()));
+            e -> {
+              RealmResults<TopRatedResults> result = realm.where(TopRatedResults.class).findAll();
+              view.hideProgress();
+              view.showTopRatedMovies(result);
+              Timber.e(e);
+            }, () -> view.hideProgress());
   }
 }
