@@ -1,24 +1,31 @@
-# MoviesMVP
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)]()
-[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://opensource.org/licenses/Apache-2.0)
+# Rappi test
+Basado en la arquitectura MVP, modelo vista presentador, para un desacople de dependencias.
 
-Sample Android app built with an MVP approach uses [TheMovieDB API](https://www.themoviedb.org/documentation/api) .
+## Capas
 
-# What is MVP?
-<img src="http://cdn.macoscope.com/blog/wp-content/uploads/2015/12/diagram_2.png"/>
+| Capa | Descripción |
+| ------ | ------ |
+| di | Contiene las clases de inyeccion de dependencias|
+| model | permite el acceso y gestion a los datos ya sean locales(Realm) o externos(Api rest)
+| mvp | contiene las clases de logica del negocio, permitiendo separar la vista de la logica |
+| ui | contiene las clases de vista
+| event | contiene los mensajes  a transmitir entre los diferentes servicios de la app
+| bus | permite enviar los eventos a diferentes componentes de la app
 
-- **View** is a layer that displays data and reacts to user actions. On Android, this could be an Activity, a Fragment, an android.view.View or a Dialog.
-- **Model** is a data access layer such as database API or remote server API.
-- **Presenter** is a layer that provides View with data from Model. Presenter also handles background tasks.
 
-# ScreenShots
-#### Popular and Top Rated Movies
-<img src="https://raw.githubusercontent.com/emrekose26/MoviesMVP/master/screenshots/main.png" height="750"/>
 
-#### Movie Detail
-<img src="https://github.com/emrekose26/MoviesMVP/blob/master/screenshots/detail.png?raw=true" height="750"/>
 
-# Libraries Used
+
+## Responsabilidad única
+
+El objetivo de este principio es de mantener un bajo acoplamiento, es decir, reducir al máximo posible el grado de la relación de las clases o módulos con el resto, para favorecer crear código más fácilmente mantenible, extensible y testeable. El objetivo principal no es otro que disminuir el acoplamiento.
+
+## Código limpio
+
+El código limpio es aquel que ha sido escrito de forma coherente, sus nombres de variables y métodos tienen sentido, en pocas palabras es aquel que a simple vista no tiene nada evidente para mejorar.
+
+
+# Librerias usadas
 
 - [Dagger2](https://github.com/google/dagger)
 - [RxJava and RxAndroid](https://github.com/ReactiveX/RxJava)
@@ -30,27 +37,4 @@ Sample Android app built with an MVP approach uses [TheMovieDB API](https://www.
 - [Glide](https://github.com/bumptech/glide)
 - [Timber](https://github.com/JakeWharton/timber)
 
-# Setup
-
-Add your API KEY in `gradle.properties` file
-
-    APIKEY="YOUR_API_KEY"
-
-License
---------
-
-
-    Copyright 2017 Emre Köse.
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
 
