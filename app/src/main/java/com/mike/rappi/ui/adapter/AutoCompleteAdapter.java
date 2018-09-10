@@ -1,6 +1,7 @@
 package com.mike.rappi.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,9 @@ import android.widget.Filter;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import com.mike.rappi.R;
+import com.mike.rappi.event.PopularDetailEvent;
 import com.mike.rappi.model.entity.popular.PopularResults;
+import com.mike.rappi.ui.activity.MovieDetailActivity;
 import com.mike.rappi.util.RxBus;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,11 +22,13 @@ public class AutoCompleteAdapter extends ArrayAdapter<PopularResults> {
   private List<PopularResults> list;
   List<PopularResults> filteredList = new ArrayList<>();
   private Context context;
+  private RxBus bus;
 
   public AutoCompleteAdapter(Context context, List<PopularResults> list, RxBus rxBus) {
     super(context, 0, list);
     this.list = list;
     this.context = context;
+    this.bus = rxBus;
   }
 
   @Override
@@ -51,6 +56,10 @@ public class AutoCompleteAdapter extends ArrayAdapter<PopularResults> {
 
     tvTitle.setText(item.getTitle());
     tvYear.setText(item.getRelease_date());
+    convertView.setOnClickListener(view -> {
+      bus.postSticky(new PopularDetailEvent(item));
+      context.startActivity(new Intent(context, MovieDetailActivity.class));
+    });
 
     return convertView;
   }

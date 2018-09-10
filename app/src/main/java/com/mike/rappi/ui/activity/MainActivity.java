@@ -67,13 +67,10 @@ public class MainActivity extends AppCompatActivity implements ISearchView {
   @Override public void showSearchResponse(MoviesResponse moviesResponse) {
     adapter =
         new AutoCompleteAdapter(this.getApplicationContext(), moviesResponse.getResults(), bus);
-    //searchAutoComplete.setAdapter(new SuggestionAdapter<>(this, R.layout.item_search_autocomplete,
-    //    moviesResponse.getResults()));
     searchAutoComplete.setAdapter(adapter);
     searchAutoComplete.setOnItemClickListener((adapterView, view, i, l) -> {
       Log.d("setOnItemClickListener", moviesResponse.getResults().get(i).getTitle());
     });
-    //searchAutoComplete.setAdapter(adapter);
   }
 
   private void initSearch() {
