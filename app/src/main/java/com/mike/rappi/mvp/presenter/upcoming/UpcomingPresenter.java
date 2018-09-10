@@ -10,12 +10,11 @@ import java.util.Locale;
 import javax.inject.Inject;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
-import timber.log.Timber;
+
 
 /**
  * Created by mike
  */
-
 public class UpcomingPresenter implements IUpcomingPresenter {
 
   private IUpcomingView view;
@@ -35,19 +34,18 @@ public class UpcomingPresenter implements IUpcomingPresenter {
 
     apiSource.getUpcomingMovies(Constants.API_KEY, Locale.getDefault().getLanguage())
         .subscribeOn(Schedulers.newThread())
-        .observeOn(AndroidSchedulers.mainThread())
+        .observeOn(AndroidSchedulers.mainThread(), false, 100)
         .subscribe(topRatedResponse -> {
               view.hideProgress();
               view.showUpComingMovies(topRatedResponse.getTopRatedResultsList());
               realm.executeTransactionAsync(
-                  realm1 -> realm1.insertOrUpdate(topRatedResponse.getTopRatedResultsList()),
-                  () -> Timber.e("onSucces"), Timber::e);
+                  realm1 -> realm1.insertOrUpdate(topRatedResponse.getTopRatedResultsList()));
             },
             e -> {
               RealmResults<UpcomingResults> result = realm.where(UpcomingResults.class).findAll();
               view.hideProgress();
               view.showUpComingMovies(result);
-              Timber.e(e);
+
             }, () -> view.hideProgress());
   }
 }

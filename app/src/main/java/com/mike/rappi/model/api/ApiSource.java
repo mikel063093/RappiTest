@@ -26,7 +26,7 @@ public interface ApiSource {
 
   // Upcoming movies
   @GET("movie/upcoming")
-  Observable<UpcomingResponse> getUpcomingMovies(@Query("api_key") String apiKey,
+  public Observable<UpcomingResponse> getUpcomingMovies(@Query("api_key") String apiKey,
       @Query("language") String language);
 
   @GET("search/movie")
