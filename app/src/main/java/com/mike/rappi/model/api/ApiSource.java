@@ -1,6 +1,7 @@
 package com.mike.rappi.model.api;
 
 import com.mike.rappi.model.entity.popular.PopularResponse;
+import com.mike.rappi.model.entity.search.MoviesResponse;
 import com.mike.rappi.model.entity.toprated.TopRatedResponse;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -26,4 +27,8 @@ public interface ApiSource {
   @GET("movie/upcoming")
   Observable<TopRatedResponse> getUpcomingMovies(@Query("api_key") String apiKey,
       @Query("language") String language);
+
+  @GET("search/movie")
+  Observable<MoviesResponse> searchMovie(@Query("api_key") String apiKey,
+      @Query("language") String language, @Query("query") String query);
 }
