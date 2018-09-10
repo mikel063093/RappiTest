@@ -2,190 +2,169 @@ package com.mike.rappi.model.entity.search;
 
 import com.google.gson.annotations.SerializedName;
 
+import io.realm.Realm;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by JkVillavo12Col on 2/03/18.
+ * Created by Mike on 2/03/18.
  */
 
-public class Movie {
+public class Movie extends RealmObject {
 
-    @SerializedName("poster_path")
-    private String posterPath;
-    @SerializedName("adult")
-    private boolean adult;
-    @SerializedName("overview")
-    private String overview;
-    @SerializedName("release_date")
-    private String releaseDate;
-    @SerializedName("genre_ids")
-    private List<Integer> genreIds = new ArrayList<Integer>();
-    @SerializedName("id")
-    private Integer id;
-    @SerializedName("original_title")
-    private String originalTitle;
-    @SerializedName("original_language")
-    private String originalLanguage;
-    @SerializedName("title")
-    private String title;
-    @SerializedName("backdrop_path")
-    private String backdropPath;
-    @SerializedName("popularity")
-    private Double popularity;
-    @SerializedName("vote_count")
-    private Integer voteCount;
-    @SerializedName("video")
-    private Boolean video;
-    @SerializedName("vote_average")
-    private Double voteAverage;
+  @SerializedName("poster_path")
+  private String posterPath;
+  @SerializedName("adult")
+  private boolean adult;
+  @SerializedName("overview")
+  private String overview;
+  @SerializedName("release_date")
+  private String releaseDate;
 
-    public Movie(String posterPath, boolean adult, String overview, String releaseDate, List<Integer> genreIds, Integer id, String originalTitle, String originalLanguage, String title, String backdropPath, Double popularity, Integer voteCount, Boolean video, Double voteAverage) {
-        this.posterPath = posterPath;
-        this.adult = adult;
-        this.overview = overview;
-        this.releaseDate = releaseDate;
-        this.genreIds = genreIds;
-        this.id = id;
-        this.originalTitle = originalTitle;
-        this.originalLanguage = originalLanguage;
-        this.title = title;
-        this.backdropPath = backdropPath;
-        this.popularity = popularity;
-        this.voteCount = voteCount;
-        this.video = video;
-        this.voteAverage = voteAverage;
-    }
+  @PrimaryKey
+  @SerializedName("id")
+  private Integer id;
+  @SerializedName("original_title")
+  private String originalTitle;
+  @SerializedName("original_language")
+  private String originalLanguage;
+  @SerializedName("title")
+  private String title;
+  @SerializedName("backdrop_path")
+  private String backdropPath;
+  @SerializedName("popularity")
+  private Double popularity;
+  @SerializedName("vote_count")
+  private Integer voteCount;
+  @SerializedName("video")
+  private Boolean video;
+  @SerializedName("vote_average")
+  private Double voteAverage;
 
-    public String getPosterPath() {
-        return posterPath;
-    }
+  public String getPosterPath() {
+    return posterPath;
+  }
 
-    public void setPosterPath(String posterPath) {
-        this.posterPath = posterPath;
-    }
+  public void setPosterPath(String posterPath) {
+    this.posterPath = posterPath;
+  }
 
-    public boolean isAdult() {
-        return adult;
-    }
+  public boolean isAdult() {
+    return adult;
+  }
 
-    public void setAdult(boolean adult) {
-        this.adult = adult;
-    }
+  public void setAdult(boolean adult) {
+    this.adult = adult;
+  }
 
-    public String getOverview() {
-        return overview;
-    }
+  public String getOverview() {
+    return overview;
+  }
 
-    public void setOverview(String overview) {
-        this.overview = overview;
-    }
+  public void setOverview(String overview) {
+    this.overview = overview;
+  }
 
-    public String getReleaseDate() {
-        return releaseDate;
-    }
+  public String getReleaseDate() {
+    return releaseDate;
+  }
 
-    public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
-    }
+  public void setReleaseDate(String releaseDate) {
+    this.releaseDate = releaseDate;
+  }
 
-    public List<Integer> getGenreIds() {
-        return genreIds;
-    }
 
-    public void setGenreIds(List<Integer> genreIds) {
-        this.genreIds = genreIds;
-    }
+  public Integer getId() {
+    return id;
+  }
 
-    public Integer getId() {
-        return id;
-    }
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+  public String getOriginalTitle() {
+    return originalTitle;
+  }
 
-    public String getOriginalTitle() {
-        return originalTitle;
-    }
+  public void setOriginalTitle(String originalTitle) {
+    this.originalTitle = originalTitle;
+  }
 
-    public void setOriginalTitle(String originalTitle) {
-        this.originalTitle = originalTitle;
-    }
+  public String getOriginalLanguage() {
+    return originalLanguage;
+  }
 
-    public String getOriginalLanguage() {
-        return originalLanguage;
-    }
+  public void setOriginalLanguage(String originalLanguage) {
+    this.originalLanguage = originalLanguage;
+  }
 
-    public void setOriginalLanguage(String originalLanguage) {
-        this.originalLanguage = originalLanguage;
-    }
+  public String getTitle() {
+    return title;
+  }
 
-    public String getTitle() {
-        return title;
-    }
+  public void setTitle(String title) {
+    this.title = title;
+  }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+  public String getBackdropPath() {
+    return backdropPath;
+  }
 
-    public String getBackdropPath() {
-        return backdropPath;
-    }
+  public void setBackdropPath(String backdropPath) {
+    this.backdropPath = backdropPath;
+  }
 
-    public void setBackdropPath(String backdropPath) {
-        this.backdropPath = backdropPath;
-    }
+  public Double getPopularity() {
+    return popularity;
+  }
 
-    public Double getPopularity() {
-        return popularity;
-    }
+  public void setPopularity(Double popularity) {
+    this.popularity = popularity;
+  }
 
-    public void setPopularity(Double popularity) {
-        this.popularity = popularity;
-    }
+  public Integer getVoteCount() {
+    return voteCount;
+  }
 
-    public Integer getVoteCount() {
-        return voteCount;
-    }
+  public void setVoteCount(Integer voteCount) {
+    this.voteCount = voteCount;
+  }
 
-    public void setVoteCount(Integer voteCount) {
-        this.voteCount = voteCount;
-    }
+  public Boolean getVideo() {
+    return video;
+  }
 
-    public Boolean getVideo() {
-        return video;
-    }
+  public void setVideo(Boolean video) {
+    this.video = video;
+  }
 
-    public void setVideo(Boolean video) {
-        this.video = video;
-    }
+  public Double getVoteAverage() {
+    return voteAverage;
+  }
 
-    public Double getVoteAverage() {
-        return voteAverage;
-    }
+  public void setVoteAverage(Double voteAverage) {
+    this.voteAverage = voteAverage;
+  }
 
-    public void setVoteAverage(Double voteAverage) {
-        this.voteAverage = voteAverage;
-    }
+  @Override
+  public String toString() {
+    return "Movie{" +
+        "posterPath='" + posterPath + '\'' +
+        ", adult=" + adult +
+        ", overview='" + overview + '\'' +
+        ", releaseDate='" + releaseDate + '\'' +
 
-    @Override
-    public String toString() {
-        return "Movie{" +
-                "posterPath='" + posterPath + '\'' +
-                ", adult=" + adult +
-                ", overview='" + overview + '\'' +
-                ", releaseDate='" + releaseDate + '\'' +
-                ", genreIds=" + genreIds +
-                ", id=" + id +
-                ", originalTitle='" + originalTitle + '\'' +
-                ", originalLanguage='" + originalLanguage + '\'' +
-                ", title='" + title + '\'' +
-                ", backdropPath='" + backdropPath + '\'' +
-                ", popularity=" + popularity +
-                ", voteCount=" + voteCount +
-                ", video=" + video +
-                ", voteAverage=" + voteAverage +
-                '}';
-    }
+        ", id=" + id +
+        ", originalTitle='" + originalTitle + '\'' +
+        ", originalLanguage='" + originalLanguage + '\'' +
+        ", title='" + title + '\'' +
+        ", backdropPath='" + backdropPath + '\'' +
+        ", popularity=" + popularity +
+        ", voteCount=" + voteCount +
+        ", video=" + video +
+        ", voteAverage=" + voteAverage +
+        '}';
+  }
 }

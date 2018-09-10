@@ -2,14 +2,15 @@
 
 buildscript {
   repositories {
+    google()
+    mavenLocal()
     jcenter()
-    maven {
-      url 'https://maven.google.com/'
-      name 'Google'
-    }
+    maven { url 'https://jitpack.io' }
   }
   dependencies {
+    classpath "io.realm:realm-gradle-plugin:5.4.1"
     classpath 'com.android.tools.build:gradle:3.3.0-alpha08'
+
 
     // NOTE: Do not place your application dependencies here; they belong
     // in the individual module build.gradle files
@@ -20,7 +21,6 @@ allprojects {
   repositories {
     jcenter()
     mavenCentral()
-    mavenLocal()
     maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
     maven { url "https://jitpack.io" }
     maven {

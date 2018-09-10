@@ -1,12 +1,14 @@
 package com.mike.rappi.model.entity.toprated;
 
 import com.google.gson.annotations.SerializedName;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by mike
  */
 
-public class TopRatedResults {
+public class TopRatedResults extends RealmObject {
   @SerializedName("poster_path")
   private String poster_path;
 
@@ -16,6 +18,7 @@ public class TopRatedResults {
   @SerializedName("release_date")
   private String release_date;
 
+  @PrimaryKey
   @SerializedName("id")
   private int id;
 

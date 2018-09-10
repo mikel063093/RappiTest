@@ -1,4 +1,4 @@
-package com.mike.rappi.model.entity.popular;
+package com.mike.rappi.model.entity.upcoming;
 
 import com.google.gson.annotations.SerializedName;
 import io.realm.RealmObject;
@@ -8,7 +8,7 @@ import io.realm.annotations.PrimaryKey;
  * Created by mike
  */
 
-public class PopularResults extends RealmObject {
+public class UpcomingResults extends RealmObject {
   @SerializedName("poster_path")
   private String poster_path;
 

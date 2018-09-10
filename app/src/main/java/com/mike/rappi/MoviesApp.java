@@ -10,6 +10,7 @@ import com.mike.rappi.di.app.AppModule;
 import com.mike.rappi.di.app.DaggerAppComponent;
 import com.mike.rappi.di.app.NetworkModule;
 
+import io.realm.Realm;
 import timber.log.Timber;
 
 /**
@@ -25,6 +26,7 @@ public class MoviesApp extends Application {
     super.onCreate();
 
     initInjector();
+    Realm.init(this);
 
     if (BuildConfig.DEBUG) {
       Timber.plant(new Timber.DebugTree());

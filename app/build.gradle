@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
-
-
+apply plugin: 'realm-android'
 
 android {
   compileSdkVersion rootProject.ext.compileSdkVersion
@@ -65,7 +64,7 @@ dependencies {
   implementation rootProject.ext.glide
   implementation rootProject.ext.timber
 
-  
+
   implementation 'androidx.legacy:legacy-support-v4:1.0.0-rc02'
   testImplementation 'junit:junit:4.12'
 }
