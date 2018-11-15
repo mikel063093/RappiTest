@@ -63,7 +63,6 @@ public class MovieDetailActivity extends AppCompatActivity {
                     .load(Constants.IMAGE_BASE_URL
                         + Constants.IMAGE_W92
                         + ((PopularDetailEvent) event).getResults().getPoster_path())
-                    .placeholder(R.drawable.movieicon)
                     .into(detailBackdrop);
 
                 Glide.with(this)
@@ -80,7 +79,7 @@ public class MovieDetailActivity extends AppCompatActivity {
                     .load(Constants.IMAGE_BASE_URL
                         + Constants.IMAGE_W342
                         + ((TopRatedDetailEvent) event).getResults().getPoster_path())
-                    .placeholder(R.drawable.movieicon)
+
                     .into(detailBackdrop);
 
                 Glide.with(this)
@@ -97,7 +96,7 @@ public class MovieDetailActivity extends AppCompatActivity {
                     .load(Constants.IMAGE_BASE_URL
                         + Constants.IMAGE_W342
                         + ((UpcomingDetailEvent) event).getResults().getPoster_path())
-                    .placeholder(R.drawable.movieicon)
+
                     .into(detailBackdrop);
 
                 Glide.with(this)
@@ -114,7 +113,7 @@ public class MovieDetailActivity extends AppCompatActivity {
                     .load(Constants.IMAGE_BASE_URL
                         + Constants.IMAGE_W342
                         + ((SearchDetailEvent) event).getResults().getPosterPath())
-                    .placeholder(R.drawable.movieicon)
+
                     .into(detailBackdrop);
 
                 Glide.with(this)

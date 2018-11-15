@@ -58,7 +58,7 @@ public class UpcomingRecyclerViewAdapter
 
     Glide.with(context)
         .load(Constants.IMAGE_BASE_URL + Constants.IMAGE_W185 + results.getPoster_path())
-        .placeholder(R.drawable.movieicon)
+
         .into(holder.poster);
 
     holder.poster.setOnClickListener(v -> {

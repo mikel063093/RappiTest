@@ -3,11 +3,11 @@ apply plugin: 'realm-android'
 
 android {
   compileSdkVersion rootProject.ext.compileSdkVersion
-  buildToolsVersion '28.0.2'
   defaultConfig {
     applicationId "com.mike.rappi"
     minSdkVersion rootProject.ext.minSdkVersion
     targetSdkVersion rootProject.ext.targetSdkVersion
+    multiDexEnabled true
     versionCode rootProject.ext.versionCode
     versionName rootProject.ext.versionName
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -43,10 +43,10 @@ dependencies {
   annotationProcessor rootProject.ext.daggerCompiler
 
   // Support lib
-  implementation 'androidx.appcompat:appcompat:1.0.0-rc02'
-  implementation 'com.google.android.material:material:1.0.0-rc02'
-  implementation 'androidx.recyclerview:recyclerview:1.0.0-rc02'
-  implementation 'androidx.cardview:cardview:1.0.0-rc02'
+  implementation 'androidx.appcompat:appcompat:1.0.2'
+  implementation 'com.google.android.material:material:1.1.0-alpha01'
+  implementation 'androidx.recyclerview:recyclerview:1.0.0'
+  implementation 'androidx.cardview:cardview:1.0.0'
 
   // RxJava
   implementation rootProject.ext.rxjava
@@ -61,16 +61,18 @@ dependencies {
   implementation rootProject.ext.retrofitLogging
 
   // ButterKnife
-  implementation rootProject.ext.butterKnife
-  annotationProcessor rootProject.ext.butterKnifeCompiler
+  implementation (rootProject.ext.butterKnife, {
+    exclude group: 'com.android.support'
+  })
 
+  annotationProcessor rootProject.ext.butterKnifeCompiler
 
   // UI
   implementation rootProject.ext.glide
   implementation rootProject.ext.timber
 
 
-  implementation 'androidx.legacy:legacy-support-v4:1.0.0-rc02'
+  implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
 
 
